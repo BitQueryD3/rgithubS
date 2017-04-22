@@ -1,0 +1,21 @@
+Package: rgithubQ
+Type: Package
+Title: GitHub API bindings for R
+Version: 0.9.9
+Author: Carlos Scheidegger <cscheid@research.att.com> [aut, cre],
+    Lukas Borke [ctb]
+Maintainer: Carlos Scheidegger <cscheid@research.att.com>
+Description: Provides access to the GitHub v3 API. Many API calls as described in <https://developer.github.com/v3/>
+    are realized as R functions, among them those for managing and manipulating organizations, repositories, members
+    and even file operations.
+License: MIT + file LICENSE
+Imports:
+    httr (>= 0.3),
+    Rook,
+    stringr,
+    jsonlite,
+    base64enc,
+    yaml
+Suggests:
+    testthat
+RoxygenNote: 5.0.1

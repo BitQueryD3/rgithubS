@@ -1,0 +1,4 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("utils", "flush.console")
+importFrom("utils", "available.packages")
+import(httr, Rook, stringr, jsonlite, base64enc, yaml)
