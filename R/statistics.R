@@ -1,5 +1,14 @@
 
-## Quantlet stats
+#' Get summary statistics for Quantlets available on Github
+#' 
+#' @param spec_editor an optional character vector with the desired author list for being displayed 
+#' 
+#' @param json_path an optional character with the url for json file with all validated Quantlets available on QuantNetXploRer 
+#' 
+#' @examples \dontrun{
+#' cran.stats(spec_editor = c("borke", "bykovskaya"))
+#' }
+#' @export
 qnet.stats = function(spec_editor = c("borke", "bykovskaya"), json_path = "http://quantlet.de/data/qlets_github_ia_utf8.json") {
 	q_stat_r = list()
 	
@@ -25,8 +34,14 @@ qnet.stats = function(spec_editor = c("borke", "bykovskaya"), json_path = "http:
 	return(q_stat_r)
 }
 
-
-## CRAN stats
+#' Get summary statistics for \code{R} packages available on Github and CRAN
+#' 
+#' @param spec_author an optional character vector with the desired author list for being displayed 
+#' 
+#' @examples \dontrun{
+#' cran.stats(spec_author = c("hornik", "leisch"))
+#' }
+#' @export
 cran.stats = function(spec_author = c("hornik", "leisch")) {
 	cran_stat_r = list()
 	
@@ -48,4 +63,20 @@ cran.stats = function(spec_author = c("hornik", "leisch")) {
 	}
 	
 	return(cran_stat_r)
+}
+
+npm.stats = function(spec_author = c("Jonathan Ong", "James Halliday")) {
+	npm_stat_r = list()
+	
+	npm_pack_search = 'name version description author node filename:"package.json" path:"/"'
+	
+	sr = search.code(npm_pack_search, per_page = 100)
+	npm_stat_r$full_gh = sr$content$total_count
+	
+	for (a_str in spec_author) {
+		sr = search.code(paste(a_str, npm_pack_search), per_page = 100)
+		npm_stat_r[[paste(a_str, "as author")]] = sr$content$total_count
+	}
+	
+	return(npm_stat_r)
 }
