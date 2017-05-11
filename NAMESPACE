@@ -1,4 +1,5 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("utils", "flush.console")
 importFrom("utils", "available.packages")
+importFrom("graphics", "boxplot")
 import(httr, Rook, stringr, jsonlite, base64enc, yaml)
